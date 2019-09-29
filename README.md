@@ -1,4 +1,4 @@
-# frontend
+# E-Comerce develop from Vue
 
 ## Project setup
 ```
