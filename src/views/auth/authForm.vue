@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height>
+  <v-container fluid>
     <v-row align-content-center>
       <v-col class="ma-auto" align-self-center text-xs-center lg5>
         <v-btn class="cyan darken-2 white--text">Iniciar Sesión</v-btn>
@@ -17,50 +17,6 @@
                   label="Repita clave"
                   name="passwordConfirmationRules"
                   type="password"
-                />
-              </v-col>
-              <v-col class="text-xs-center" xs12>
-                <v-btn class="black white--text mt-5" :disabled="!valid">{{ action }}</v-btn>
-              </v-col>
-            </v-row>
-          </v-form>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row align-content-center>
-      <v-col class="ma-auto" align-self-center text-xs-center lg5>
-        <h5
-          class="mb-4 ml-3 headline"
-        >Coloca tu correo electrónico y te enviaremos un link de recuperación</h5>
-        <v-card class="pa-5 mt-3 text-xs-center">
-          <h5 class="mb-5 ml-3 subheading">Coloca nueva contraseña</h5>
-          <v-form v-model="valid">
-            <v-row row wrap>
-              <v-col xs11 class="ma-auto">
-                <v-text-field label="Correo Electronico" name="email" type="email" />
-              </v-col>
-              <v-col class="text-xs-center" xs12>
-                <v-btn class="black white--text mt-5" :disabled="!valid">{{ action }}</v-btn>
-              </v-col>
-            </v-row>
-          </v-form>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row align-content-center>
-      <v-col class="ma-auto" align-self-center text-xs-center lg5>
-        <h5
-          class="mb-4 ml-3 headline"
-        >Registrarse</h5>
-        <v-card class="pa-5 mt-3 text-xs-center">
-          <h5 class="mb-5 ml-3 subheading">Ingresa tu Contraseña</h5>
-          <v-form v-model="valid">
-            <v-row row wrap>
-              <v-col xs11 class="ma-auto">
-                <v-text-field
-                  label="Correo Electronico"
-                  name="email"
-                  type="email"
                 />
               </v-col>
               <v-col class="text-xs-center" xs12>
