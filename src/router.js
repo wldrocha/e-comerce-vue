@@ -27,5 +27,15 @@ export default new Router({
       name: 'NewPass',
       component: () => import(/* webpackChunkName: "about" */ './views/auth/NewPass.vue')
     },
+    {
+      path: '/products',
+      name: 'Products',
+      component: () => import(/* webpackChunkName: "about" */ './views/products/List.vue')
+    },
+    {
+      path: '/products/details',
+      name: 'Products Details',
+      component: () => import(/* webpackChunkName: "about" */ './views/products/Details.vue')
+    },
   ]
 })
