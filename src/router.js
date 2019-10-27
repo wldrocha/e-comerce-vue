@@ -33,7 +33,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/products/List.vue')
     },
     {
-      path: '/products/details',
+      path: '/product/details',
       name: 'Products Details',
       component: () => import(/* webpackChunkName: "about" */ './views/products/Details.vue')
     },

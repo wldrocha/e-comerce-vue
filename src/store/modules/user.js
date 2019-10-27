@@ -93,12 +93,9 @@ export default {
             return new Promise((resolve, reject) => {
                 Vue.axios({ url: Api.baseUrl + Api.loginRequest, data: user, method: Api.registerMethod })
                     .then(success => {
-
-                        console.log(success)
-                        // commit('SET_TOKEN', success.data.token)
-                        // resolve(success);
+                        commit('SET_TOKEN', success.data.token)
+                        resolve(success);
                     }).catch((err) => {
-                        console.log()
                         reject(err);
                     })
             });

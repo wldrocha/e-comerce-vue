@@ -85,11 +85,16 @@ export default {
       vm.$store
         .dispatch("Login", data)
         .then((response) => {
-          console.log(response);
-          vm.$router.push("/products");
+          vm.$store
+            .dispatch("setUser")
+            .then(()=>{
+              vm.$router.push("/products");
+            })
+            .catch(err => console.log(err))
         })
+       
         .catch(err => {
-          // vm.options.loading = false;
+          vm.options.loading = false;
           console.log('ocurrio un error', err)
         });
     }
