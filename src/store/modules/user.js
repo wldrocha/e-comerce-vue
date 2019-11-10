@@ -34,7 +34,7 @@ export default {
             state.status = err;
         },
         LOGOUT(state) {
-            
+
             state.user._id = null
             state.user.firstName = null
             state.user.lastName = null
@@ -45,15 +45,13 @@ export default {
             state.token.expires_in = null
             state.token.token_type = null
             state.notifications = []
-            
+
         },
-        ADD_MEMBERSHIP_USER(state, membership) {
-            state.user._membership = membership;
-        }
+
 
     },
     actions: {
-        ResetPass({ commit }, user) {
+        ResetPass(user) {
             return new Promise((resolve, reject) => {
                 Vue.axios({ url: Api.baseUrl + Api.resetPassRequest, data: user, method: Api.resetPassMethod })
                     .then(response => {
@@ -64,9 +62,9 @@ export default {
                     })
             });
         },
-        NwePass({ commit }, user) {
+        NwePass(user) {
             return new Promise((resolve, reject) => {
-                Vue.axios({ url: Api.baseUrl + Api.resetPassRequest + user.token, data: {password: user.password}, method: Api.newPassMethod })
+                Vue.axios({ url: Api.baseUrl + Api.resetPassRequest + user.token, data: { password: user.password }, method: Api.newPassMethod })
                     .then(response => {
                         resolve(response);
                     })
@@ -75,16 +73,15 @@ export default {
                     })
             });
         },
-        Register({ commit }, user) {
+        Register(user) {
             return new Promise((resolve, reject) => {
                 Vue.axios({ url: Api.baseUrl + Api.registerRequest, data: user, method: Api.registerMethod })
                     .then(response => {
-                        console.log(response);
                         resolve(response);
                     })
                     .catch(err => {
                         console.log('err store', err);
-                        
+
                         reject(err.response);
                     })
             });
@@ -111,78 +108,14 @@ export default {
                     })
             });
         },
-        AddMembershipUser({ getters, dispatch }, data) {
-            return new Promise((resolve, reject) => {
-                Vue.axios({ url: Api.baseUrl + Api.AddMembershipUserRequest, data: data, method: Api.AddMembershipUserMethod, headers: getters.getHeaders })
-                    .then(response => {
-
-                        console.log(response)
-                        dispatch('setUser')
-                        resolve(response)
-
-                    }).catch(err => {
-
-                        console.log(err)
-                        reject(err)
-
-                    })
-            });
-        },
-        AddBannerPackage({dispatch}, packageData){
-            return new Promise((resolve,reject) => {
-                Vue.axios({ url: Api.baseUrl+Api.addPackageRequest, data:{ userID: packageData.userId, bannerPackageID: packageData.bannerPackageID, package_type: packageData.package_type  }, method: Api.addPackageMethod })
-                    .then(response => {
-
-                        dispatch('setUser');
-                        resolve(response)
-
-                    })
-                    .catch(err => {
-
-                        reject(err)
-
-                    })
-            
-            })
-        },
-        ContactForm({dispatch}, contactForm){
-            return new Promise((resolve,reject) => {
-                Vue.axios({ url: Api.baseUrl+Api.contactForm, data: contactForm, method: Api.postMethod })
-                    .then(response => {
-
-                        console.log(resolve)
-                        resolve(response)
-
-                    })
-                    .catch(err => {
-
-                        reject(err)
-
-                    })
-            
-            })
-        },
-        AddSubcribe({}, email){
-            return new Promise((resolve,reject) => {
-                Vue.axios({ url: Api.baseUrl+Api.addSubcribeRequest, data: {email: email}, method: Api.postMethod })
-                    .then(response => {
-                        resolve(response)
-                    })
-                    .catch(err => {
-                        reject(err)
-                    })
-            })
-        },
         UpdateUser({ getters, dispatch }, updateData) {
             return new Promise((resolve, reject) => {
                 Vue.axios({ url: Api.baseUrl + Api.getUserRequest, data: updateData, method: Api.updateUserMethod, headers: getters.getHeader })
                     .then(response => {
-
                         dispatch('setUser')
                         resolve(response)
 
                     }).catch(err => {
-
                         console.log(err)
                         reject(err)
 
@@ -190,12 +123,10 @@ export default {
             })
         },
         Logout({ commit }) {
-            return new Promise((resolve,reject) => {
-
+            return new Promise((resolve) => {
                 commit('LOGOUT');
                 let path_ = '/'
                 resolve(path_);
-
             })
         }
     },
@@ -214,7 +145,7 @@ export default {
                     let headers = {
                         'accept': 'Application/json',
                         'authentication': getters.isAuthToken.token_type + getters.isAuthToken.access_token,
-                        
+
                     }
                     return headers;
                 } else {
@@ -238,7 +169,6 @@ export default {
             } else {
                 return state.token
             }
-
         }
 
     }

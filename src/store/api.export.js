@@ -3,13 +3,27 @@ export default {
     baseUrlPublic: 'http://127.0.0.1:3000/public/',
 
     loginMethod: 'POST',
-    loginRequest: '/login',
+    loginRequest: '/logins',
+
+
+    getUserMethod: 'GET',
 
     registerMethod: 'POST',
     registerRequest: '/signup',
-    getUserMethod: 'GET',
     getUserRequest: '/user',
     getAllUsersRequest: '/users',
     updateUserMethod: 'PUT',
     updateUserRequest: '/update',
+
+    getSupplierRequest: '/supplier',
+    getAllSuppliersRequest: '/suppliers',
+    getAllSuppliersMehtod: 'GET',
+    addSupplierRequest : '/supplier',
+    addSupplierMethod: 'POST',
+
+    getProductRequest: '/product',
+    getAllProductsRequest: '/products',
+    getAllProductsMehtod: 'GET',
+    addProductRequest : '/product',
+    addProductMethod: 'POST',
 }

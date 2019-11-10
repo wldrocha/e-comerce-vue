@@ -10,32 +10,42 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import(/* webpackChunkName: "about" */ './views/auth/Login.vue')
+      component: () => import('./views/products/List.vue')
     },
     {
-      path: '/register',
-      name: 'Register',
-      component: () => import(/* webpackChunkName: "about" */ './views/auth/SignIn.vue')
+      path: '/registro',
+      name: 'Registro',
+      component: () => import('./views/auth/SignIn.vue')
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: () => import(/* webpackChunkName: "about" */ './views/auth/Login.vue')
+      path: '/iniciar-sesion',
+      name: 'Inicio de sesión',
+      component: () => import('./views/auth/Login.vue')
     },
     {
-      path: '/forgot-password',
-      name: 'NewPass',
-      component: () => import(/* webpackChunkName: "about" */ './views/auth/NewPass.vue')
+      path: '/olvide-clave',
+      name: 'Nueva Coontraseña',
+      component: () => import('./views/auth/NewPass.vue')
     },
     {
-      path: '/products',
-      name: 'Products',
-      component: () => import(/* webpackChunkName: "about" */ './views/products/List.vue')
+      path: '/productos',
+      name: 'Productos',
+      component: () => import('./views/products/List.vue')
     },
     {
-      path: '/product/details',
-      name: 'Products Details',
-      component: () => import(/* webpackChunkName: "about" */ './views/products/Details.vue')
+      path: '/producto/nuevo',
+      name: 'Crear Porducto',
+      component: () => import('./views/products/create.vue')
+    },
+    {
+      path: '/producto/detalles',
+      name: 'Detalles de producto',
+      component: () => import('./views/products/Details.vue')
+    },
+    {
+      path: '/proveedores',
+      name: 'Proveedores',
+      component: () => import('./views/supplier/list.vue')
     },
   ]
 })

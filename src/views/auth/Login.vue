@@ -4,8 +4,8 @@
       <v-col>
         <v-row>
           <v-col class="d-flex justify-center">
-            <v-btn class="cyan lighten-1 white--text mr-2" to="/login">Iniciar Sesión</v-btn>
-            <v-btn class="ml-2" to="/register">Registrarse</v-btn>
+            <v-btn class="cyan lighten-1 white--text mr-2" to="/iniciar-sesion">Iniciar Sesión</v-btn>
+            <v-btn class="ml-2" to="/registro">Registrarse</v-btn>
           </v-col>
         </v-row>
         <v-row>
@@ -35,7 +35,7 @@
                       <v-col class="d-flex justify-center">
                         <h3
                           style="cursor:pointer"
-                          @click="$router.push('/forgot-password')"
+                          @click="$router.push('/olvide-clave')"
                         >¿Olvidaste tu Contraseña?</h3>
                       </v-col>
                       <v-col class="d-flex justify-center">
