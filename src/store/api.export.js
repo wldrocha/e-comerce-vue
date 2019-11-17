@@ -3,7 +3,7 @@ export default {
     baseUrlPublic: 'http://127.0.0.1:3000/public/',
 
     loginMethod: 'POST',
-    loginRequest: '/logins',
+    loginRequest: '/login',
 
 
     getUserMethod: 'GET',

@@ -10,7 +10,6 @@ export default {
 
     state: {
         products: [],
-        product: {}
     },
     mutations: {
         CLEAN_PRODUCTS(state) {
@@ -39,7 +38,6 @@ export default {
         },
         
         AddProduct({getters, commit}, product){
-            // console.log(Api.baseUrl+Api.addProductRequest,Api.addProductMethod, getters.getHe)
             return new Promise((resolve, reject) =>{
                 Vue.axios({ url: Api.baseUrl+Api.addProductRequest, data: product, method: Api.addProductMethod, headers: getters.getHeader})
                 .then( response => {
@@ -57,8 +55,8 @@ export default {
         getAllProducts(state) {
             return state.products;
         },
-        getProduct(state) {
-            return state.product;
+        getProductById : (state)=>(id) =>{
+            return state.products.find(product => product._id == id)
         }
     }
 }

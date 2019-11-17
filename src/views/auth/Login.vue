@@ -84,11 +84,11 @@ export default {
       let data = { email: vm.user.email, password: vm.user.pass };
       vm.$store
         .dispatch("Login", data)
-        .then((response) => {
+        .then(() => {
           vm.$store
             .dispatch("setUser")
             .then(()=>{
-              vm.$router.push("/products");
+              vm.$router.push("/");
             })
             .catch(err => console.log(err))
         })

@@ -7,7 +7,7 @@
             <v-row>
               <v-col>
                 <v-card-title>
-                  <h2 class="font-weight-regular text-xs-left display-2 ml-5">Cafe Badilico</h2>
+                  <h2 class="font-weight-regular text-xs-left display-2 ml-5">{{product.name}}</h2>
                 </v-card-title>
               </v-col>
             </v-row>
@@ -35,7 +35,7 @@
                       class="text-xs-left"
                     ></v-rating>
                     <div class="grey--text ml-4">
-                      <p>4.5 (413)</p>
+                      <p>{{product.price}} </p>
                     </div>
                   </v-col>
                 </v-row>
@@ -44,12 +44,12 @@
                     <v-col>
                       <p
                         class="font-weight-regular"
-                      >Small plates, salads & sandwiches an inteimate setting with 12 indoor seats plus patio seating.</p>
+                      >{{product.description}}</p>
                     </v-col>
                   </v-row>
                   <v-row>
                     <v-col cols="5">
-                      <v-select v-model="product.tallas" :items="product.tallas" label="Tallas"></v-select>
+                      <v-select v-model="product.size" :items="product.size" label="Tallas"></v-select>
                     </v-col>
                     <v-col cols="6">
                       <v-btn large color="teal" block class="white--text mt-2">
@@ -60,7 +60,7 @@
                 </v-card-text>
               </v-col>
             </v-row>
-            <v-row>
+            <!-- <v-row>
               <v-col>
                 <v-tabs class="black--text" centered >
                   <v-tab>Preguntas</v-tab>
@@ -121,7 +121,7 @@
                   </v-tab-item>
                 </v-tabs>
               </v-col>
-            </v-row>
+            </v-row> -->
           </v-card>
         </v-container>
       </v-col>
@@ -129,13 +129,26 @@
   </v-container>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Details-product",
   data: () => ({
-    product: {
-      rating: 3,
-      tallas: [39, 39, 40, 41, 42]
+   product:''
+  }),
+  created(){
+    this.product = this.getProductById(this.$route.params.id)
+    console.log(this.product)
+  },
+  computed:{
+    ...mapGetters({isAuthUser:"isAuthUser", getProductById:"getProductById"}),
+    // filterProduct(){
+    //   return this.products.filter(product => product._id = this.$route.params.productId)
+    // },
+  },
+  methods:{
+    filterProduct(){
+      this.product = this.products.filter(product => product._id = this.$route.params.productId)
     }
-  })
+  }
 };
 </script>

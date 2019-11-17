@@ -80,8 +80,6 @@ export default {
                         resolve(response);
                     })
                     .catch(err => {
-                        console.log('err store', err);
-
                         reject(err.response);
                     })
             });
@@ -90,6 +88,7 @@ export default {
             return new Promise((resolve, reject) => {
                 Vue.axios({ url: Api.baseUrl + Api.loginRequest, data: user, method: Api.registerMethod })
                     .then(success => {
+                        localStorage.setItem('user-token', success.data.token)
                         commit('SET_TOKEN', success.data.token)
                         resolve(success);
                     }).catch((err) => {
@@ -145,7 +144,6 @@ export default {
                     let headers = {
                         'accept': 'Application/json',
                         'authentication': getters.isAuthToken.token_type + getters.isAuthToken.access_token,
-
                     }
                     return headers;
                 } else {

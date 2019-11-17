@@ -3,7 +3,8 @@
         <v-app-bar-nav-icon @click="showDrawer()" class="white--text"></v-app-bar-nav-icon>
         <v-toolbar-title>Ecomerce</v-toolbar-title>
         <!-- <v-text-field placeholder="Buscar"></v-text-field> -->
-        <v-icon>mdi-cart-outline</v-icon>
+        <v-spacer></v-spacer>
+        <v-icon class="white--text">mdi-cart</v-icon>
       </v-toolbar>
     
 </template>

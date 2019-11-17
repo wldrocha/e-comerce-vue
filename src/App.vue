@@ -33,6 +33,7 @@
 <script>
 import Drawer from "./views/Navigation/Drawer";
 import Navigation from "./views/Navigation/Navigation";
+import { mapGetters } from "vuex";
 export default {
   components: { Navigation, Drawer },
   name: "App",
@@ -42,6 +43,12 @@ export default {
         show: false
       }
     };
+  },
+  computed:{
+    ...mapGetters({
+      isAuthUser: "isAuthUser",
+      products: "getAllProducts"
+    })
   },
   methods: {
     showDrawerNav(show) {
