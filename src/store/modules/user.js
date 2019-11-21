@@ -73,9 +73,9 @@ export default {
                     })
             });
         },
-        Register(user) {
+        Register({ getters, commit }, data) {
             return new Promise((resolve, reject) => {
-                Vue.axios({ url: Api.baseUrl + Api.registerRequest, data: user, method: Api.registerMethod })
+                Vue.axios({ url: Api.baseUrl + Api.registerRequest, data: data, method: Api.registerMethod })
                     .then(response => {
                         resolve(response);
                     })

@@ -39,7 +39,11 @@
                         >¿Olvidaste tu Contraseña?</h3>
                       </v-col>
                       <v-col class="d-flex justify-center">
-                        <v-btn class="black white--text mt-5" :disabled="!valid" @click="login">Iniciar Sesión</v-btn>
+                        <v-btn
+                          class="black white--text mt-5"
+                          :disabled="!valid"
+                          @click="login"
+                        >Iniciar Sesión</v-btn>
                       </v-col>
                     </v-col>
                   </v-row>
@@ -76,7 +80,16 @@ export default {
           "Su contraseña debe poseer más de 6 caracteres"
       ]
     },
-    showPassword: false 
+    snackbar: {
+      snackbar: true,
+      y: "bottom",
+      x: null,
+      mode: "",
+      timeout: null,
+      text: null,
+      color: "cyan darken-2"
+    },
+    showPassword: false
   }),
   methods: {
     login() {
@@ -87,15 +100,19 @@ export default {
         .then(() => {
           vm.$store
             .dispatch("setUser")
-            .then(()=>{
+            .then(() => {
+              vm.snackbar.text = "Ha iniciado con éxito!!";
+              vm.$emit("showSnackBar", vm.snackbar);
               vm.$router.push("/");
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
         })
-       
+
         .catch(err => {
           vm.options.loading = false;
-          console.log('ocurrio un error', err)
+          vm.snackbar.text = "Ha iniciado con éxito!!";
+          vm.$emit("showSnackBar", vm.snackbar);
+          console.log("ocurrio un error", err);
         });
     }
   }

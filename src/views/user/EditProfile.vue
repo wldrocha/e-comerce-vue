@@ -1,0 +1,19 @@
+<template>
+    <div id="edit ">
+        <v-container>
+            <v-row>
+                <v-col>
+                    <v-row>
+                        <v-card>
+                            <v-row>
+                                <v-col>
+                                    <v-avatar></v-avatar>
+                                </v-col>
+                            </v-row>
+                        </v-card>
+                    </v-row>
+                </v-col>
+            </v-row>
+        </v-container>
+    </div>
+</template>

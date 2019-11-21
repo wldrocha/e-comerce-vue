@@ -131,6 +131,7 @@ export default {
         email: vm.user.email,
         password: vm.user.pass
       };
+      console.log('sin procesar', data)
       vm.$store
         .dispatch("Register", data)
         .then(response => {

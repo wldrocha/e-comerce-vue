@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './store/store'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -58,4 +59,24 @@ export default new Router({
       component: () => import('./views/ShoppingCar/List')
     },
   ]
+});
+
+router.beforeEach((to,from,next) =>{
+  if(to.matched.some(record => record.meta.forGuest)){
+    if(store.getters.isAuthToken) {
+      next({ path: '/productos'})
+    } else {
+      next()
+    }
+  }else if(to.matched.some(record => record.meta.forAuth)) {
+    if(!store.getters.isAuthToken) {
+      next({ path: '/'})
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
+
+export default router

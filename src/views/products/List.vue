@@ -3,7 +3,7 @@
     <v-row align="center" justify="center">
       <!-- <v-col v-for="(product, i) in products" :key="i" class="ma-0 mb-0"> -->
       <v-hover v-for="(product, i) in products" :key="i">
-        <v-card class="mx-5 my-4 product-hover" max-width="275" @click="detailMethod(product._id)" >
+        <v-card class="mx-5 my-4 product-hover" max-width="275" @click="detailMethod(product._id)">
           <v-img height="230" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
           <div style="position:relative">
             <!-- <v-btn
@@ -16,7 +16,7 @@
               @click="shopProduct"
             >
               <v-icon>mdi-cart</v-icon>
-            </v-btn> -->
+            </v-btn>-->
           </div>
           <v-card-title>{{product.name}}</v-card-title>
           <v-card-text>
@@ -37,6 +37,7 @@
         right
         fab
         class="mb-5"
+        v-if="isAuthUser && isAuthUser.level == 1"
         @click="dialog = !dialog"
       >
         <v-icon dark>mdi-plus</v-icon>
@@ -74,7 +75,12 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-file-input
+                  <FileUploadImage
+                    @ErrorImageFile="ErrorImageFile"
+                    @GetImageFile="GetImageFile"
+                    :options="imageFileOptions"
+                  />
+                  <!-- <v-file-input
                     append-icon="mdi-camera"
                     show-size
                     outlined
@@ -82,7 +88,7 @@
                     multiple
                     accept="image/*"
                     label="Agrega tus imagenes"
-                  ></v-file-input>
+                  ></v-file-input>-->
                 </v-col>
                 <v-col cols="6">
                   <v-select
@@ -124,22 +130,31 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import FileUploadImage from "../../components/FileUploadImage";
 export default {
   name: "Product-List",
+  components: { FileUploadImage },
   data: () => ({
     dialog: false,
     product: {
       name: "",
       code: "",
       description: "",
+      supplier: "",
+      price: "",
       rating: 3,
       size: ""
     },
-    size: [39, 40, 41, 42]
+    size: [39, 40, 41, 42],
+    imageFileOptions:{
+          multiple: true,
+          imageFiles: []
+        },
   }),
   created() {
     let vm = this;
     vm.setProducts();
+    vm.setSuppliers();
   },
   computed: {
     ...mapGetters({
@@ -162,24 +177,41 @@ export default {
     },
     newProduct() {
       let vm = this;
-      vm.$store
+      vm.$storef
         .dispatch("AddProduct", vm.product)
         .then(() => {})
         .catch(error => {
           console.log(error);
         });
-      // this.dialog = false;
+      this.dialog = false;
     },
     shopProduct() {
       console.log("estoy comprando");
     },
     detailMethod(id) {
-      
       let vm = this;
       vm.$router.push({
         name: "Detalles de producto",
         params: { id }
       });
+    },
+    setSuppliers() {
+      let vm = this;
+      vm.awaitRequest = true;
+      vm.$store
+        .dispatch("GetSuppliers")
+        .then()
+        .catch(error => console.log("error", error));
+    },
+    GetImageFile(image) {
+      let vm = this;
+      vm.data.imagesPost = image;
+    },
+    ErrorImageFile(message) {
+      let vm = this;
+      vm.snackbar.text = "Peso excedido!!";
+      vm.snackbar.color = "red darken-1";
+      vm.$emit("showSnackBar", vm.snackbar);
     }
   }
 };

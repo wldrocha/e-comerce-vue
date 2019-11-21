@@ -6,23 +6,7 @@ import vuetify from './plugins/vuetify';
 import '@babel/polyfill'
 
 Vue.config.productionTip = false;
-router.beforeEach((to,from,next) =>{
-  if(to.matched.some(record => record.meta.forGuest)){
-    if(store.getters.isAuthToken) {
-      next({ path: '/productos'})
-    } else {
-      next()
-    }
-  }else if(to.matched.some(record => record.meta.forAuth)) {
-    if(!store.getters.isAuthToken) {
-      next({ path: '/'})
-    } else {
-      next()
-    }
-  } else {
-    next()
-  }
-})
+
 
 new Vue({
   router,
